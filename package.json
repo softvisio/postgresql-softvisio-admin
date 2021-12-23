@@ -1,0 +1,21 @@
+{
+    "name": "postgresql-softvisio-admin",
+    "version": "1.0.1",
+    "private": true,
+    "description": "PostgreSQL admin package",
+    "keywords": [
+        "softvisio",
+        "postgresql"
+    ],
+    "homepage": "https://github.com/softvisio/postgresql-softvisio-admin",
+    "bugs": {
+        "url": "https://github.com/softvisio/postgresql-softvisio-admin/issues",
+        "email": "zdm@softvisio.net"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/softvisio/postgresql-softvisio-admin.git"
+    },
+    "license": "ISC",
+    "author": "zdm <zdm@softvisio.net>"
+}

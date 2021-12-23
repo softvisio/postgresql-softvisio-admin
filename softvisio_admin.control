@@ -1,0 +1,7 @@
+default_version = '1.0.0'
+comment = 'Admin package'
+requires = 'pgcrypto, dblink'
+superuser = true
+# trusted = false
+module_pathname = ''
+relocatable = true
