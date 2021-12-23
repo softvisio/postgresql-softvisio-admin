@@ -1,6 +1,6 @@
 {
     "name": "postgresql-softvisio-admin",
-    "version": "1.0.1",
+    "version": "1.0.0",
     "private": true,
     "description": "PostgreSQL admin package",
     "keywords": [
