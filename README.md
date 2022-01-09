@@ -3,7 +3,7 @@
 ## Install / update / drop
 
 ```
-CREATE EXTENSION softvisio_admin CASCADE;
+CREATE EXTENSION IF NOT EXISTS softvisio_admin CASCADE;
 
 ALTER EXTENSION softvisio_admin UPDATE;
 
