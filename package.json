@@ -16,6 +16,6 @@
         "type": "git",
         "url": "https://github.com/softvisio/postgresql-softvisio-admin.git"
     },
-    "license": "Proprietary Software",
+    "license": "ISC",
     "author": "zdm <zdm@softvisio.net>"
 }
