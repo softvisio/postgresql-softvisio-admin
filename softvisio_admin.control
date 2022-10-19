@@ -1,5 +1,5 @@
-default_version = '1.1.0'
-comment = 'Admin package'
+default_version = '1.1.1'
+comment = 'Admin extension'
 requires = 'pgcrypto, dblink'
 superuser = true
 # trusted = false

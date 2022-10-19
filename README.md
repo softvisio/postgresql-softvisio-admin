@@ -1,4 +1,4 @@
-# PostgreSQL admin package
+# PostgreSQL admin extension
 
 ## Install / update / drop
 
