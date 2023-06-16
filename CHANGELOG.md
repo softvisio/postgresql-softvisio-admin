@@ -1,5 +1,11 @@
 # Changelog
 
+### 1.1.2 (2023-06-16)
+
+Fixes:
+
+-   fix: migrate to the new glob
+
 ### 1.1.1 (2022-10-19)
 
 Fixes:
