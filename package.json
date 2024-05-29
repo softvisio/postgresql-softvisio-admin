@@ -10,12 +10,12 @@
     "homepage": "https://github.com/softvisio/postgresql-softvisio-admin",
     "bugs": {
         "url": "https://github.com/softvisio/postgresql-softvisio-admin/issues",
-        "email": "zdm <zdm@softvisio.net>"
+        "email": "root <root@softvisio.net>"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/softvisio/postgresql-softvisio-admin.git"
     },
-    "license": "ISC",
-    "author": "zdm <zdm@softvisio.net>"
+    "license": "Proprietary Software",
+    "author": "root <root@softvisio.net>"
 }
