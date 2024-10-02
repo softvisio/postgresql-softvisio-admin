@@ -3,7 +3,51 @@
 \echo 'ALTER EXTENSION softvisio_admin UPDATE;'
 \echo \quit
 
-CREATE FUNCTION outdated_extensions() RETURNS TABLE (
+CREATE OR REPLACE PROCEDURE create_database ( _name text, _collate text DEFAULT 'C.UTF-8' ) AS $$
+DECLARE
+    _password text;
+    _conn text;
+BEGIN
+    _conn := 'dbname=' || _name;
+
+    -- check database exists
+    IF EXISTS ( SELECT FROM pg_database WHERE datname = _name ) THEN
+        RAISE EXCEPTION 'Database already exists';
+    END IF;
+
+    -- if user is not exists
+    IF NOT EXISTS ( SELECT FROM pg_roles WHERE rolname = _name ) THEN
+        -- generate password
+        _password := ( SELECT translate( encode( gen_random_bytes( 16 ), 'base64' ), '+/=', '-_' ) AS password );
+
+        RAISE NOTICE 'Password %', _password;
+
+        -- create user
+        PERFORM dblink_exec('dbname=' || current_database(), 'CREATE USER ' || quote_ident( _name ) || ' WITH ENCRYPTED PASSWORD ' || quote_literal( _password ), FALSE );
+    ELSE
+        RAISE NOTICE 'User already exists, you can set password manually';
+    END IF;
+
+    -- create database
+    PERFORM dblink_exec( 'dbname=' || current_database(), 'CREATE DATABASE ' || quote_ident( _name ) || ' ENCODING ''UTF8'' LC_COLLATE ' || quote_literal( _collate ) || ' LC_CTYPE ' || quote_literal( _collate ) || ' TEMPLATE template0', FALSE);
+
+    -- change database owner
+    PERFORM dblink_exec( 'dbname=' || current_database(), 'ALTER DATABASE ' || quote_ident( _name ) || ' OWNER TO ' || quote_ident( _name ), FALSE );
+
+    -- grant user permissions to create schemas
+    PERFORM dblink_exec( 'dbname=' || current_database(), 'GRANT ALL PRIVILEGES ON DATABASE ' || quote_ident( _name ) || ' TO ' || quote_ident( _name ), FALSE );
+
+    -- create schema
+    PERFORM dblink_exec( _conn, 'CREATE SCHEMA AUTHORIZATION ' || quote_ident( _name ), FALSE );
+
+    -- create extensions in "public" schema
+    -- PERFORM dblink_exec(_conn, 'CREATE EXTENSION pgcrypto CASCADE', FALSE);
+    -- PERFORM dblink_exec(_conn, 'CREATE EXTENSION timescaledb CASCADE', FALSE);
+    -- PERFORM dblink_exec(_conn, 'CREATE EXTENSION pg_hashids CASCADE', FALSE);
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION outdated_extensions() RETURNS TABLE (
     database text,
     extension text,
     installed_version text,
@@ -23,14 +67,14 @@ BEGIN
     FOR _database IN
         SELECT datname FROM pg_database WHERE datistemplate = FALSE
     LOOP
-        PERFORM dblink_connect( 'dbname=' || _database );
+        PERFORM dblink_connect( '_outdated_extensions', 'dbname=' || _database );
 
         INSERT INTO
             tmp
         SELECT
             _database,
             *
-        FROM dblink( '
+        FROM dblink( '_outdated_extensions', '
             SELECT
                 name,
                 installed_version,
@@ -46,9 +90,46 @@ BEGIN
             default_version text
         );
 
-        PERFORM dblink_disconnect();
+        PERFORM dblink_disconnect( '_outdated_extensions' );
     END LOOP;
 
     RETURN QUERY SELECT * FROM tmp;
+
+EXCEPTION WHEN OTHERS THEN
+    PERFORM dblink_disconnect( '_outdated_extensions' );
+
+    RAISE;
+
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE PROCEDURE update_extensions() AS $$
+DECLARE
+    _row record;
+    _database text;
+BEGIN
+
+    FOR _row IN
+        SELECT * FROM outdated_extensions()
+    LOOP
+        PERFORM dblink_connect( '_update_extensions', 'dbname=' || _row.database );
+
+        -- test query, required to avoid exceptions when some extension can't be loaded
+        IF ( SELECT * FROM dblink( '_update_extensions', 'SELECT 1', FALSE ) AS t ( test int2 ) ) THEN END IF;
+
+        IF _row.extension = 'postgis' THEN
+            PERFORM dblink_exec( '_update_extensions', 'SELECT postgis_extensions_upgrade()', FALSE );
+        ELSE
+            PERFORM dblink_exec( '_update_extensions', 'ALTER EXTENSION ' || quote_ident( _row.extension ) || ' UPDATE', FALSE );
+        END IF;
+
+        PERFORM dblink_disconnect( '_update_extensions' );
+    END LOOP;
+
+EXCEPTION WHEN OTHERS THEN
+    PERFORM dblink_disconnect( '_update_extensions' );
+
+    RAISE;
+
 END;
 $$ LANGUAGE plpgsql;
