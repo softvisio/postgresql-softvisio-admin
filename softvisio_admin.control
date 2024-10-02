@@ -1,4 +1,4 @@
-default_version = '1.2.1'
+default_version = '1.2.2'
 comment = 'Admin extension'
 requires = 'pgcrypto, dblink'
 superuser = true
