@@ -131,7 +131,7 @@ BEGIN
         IF ( SELECT * FROM dblink( '_update_extensions', 'SELECT 1', FALSE ) AS t ( test int2 ) ) THEN END IF;
 
         IF _row.extension = 'postgis' THEN
-            PERFORM dblink_exec( '_update_extensions', 'SELECT postgis_extensions_upgrade()', FALSE );
+            IF ( SELECT * FROM dblink( '_update_extensions', 'SELECT postgis_extensions_upgrade()', FALSE ) AS t ( result text ) ) THEN END IF;
         ELSE
             PERFORM dblink_exec( '_update_extensions', 'ALTER EXTENSION ' || quote_ident( _row.extension ) || ' UPDATE', FALSE );
         END IF;
