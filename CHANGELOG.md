@@ -1,5 +1,11 @@
 # Changelog
 
+### 1.2.3 (2024-10-02)
+
+Fixes:
+
+-   fix: update scripts
+
 ### 1.2.2 (2024-10-02)
 
 Fixes:
