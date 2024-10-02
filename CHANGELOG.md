@@ -1,5 +1,11 @@
 # Changelog
 
+### 1.2.0 (2024-10-02)
+
+Features:
+
+-   feat: outdated_extensions() function
+
 ### 1.1.7 (2024-09-07)
 
 No notable changes since the previous release.
