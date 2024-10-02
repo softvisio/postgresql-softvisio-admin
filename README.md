@@ -42,3 +42,13 @@ Example:
 ```
 CALL update_extensions();
 ```
+
+### outdated_extensions()
+
+Returns list of outdated extensions for all databases in the cluster.
+
+Example:
+
+```
+SELECT * FROM outdated_extensions();
+```
