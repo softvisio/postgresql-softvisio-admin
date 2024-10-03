@@ -1,5 +1,11 @@
 # Changelog
 
+### 1.2.5 (2024-10-03)
+
+Fixes:
+
+-   fix: tmp table name
+
 ### 1.2.4 (2024-10-03)
 
 Fixes:
