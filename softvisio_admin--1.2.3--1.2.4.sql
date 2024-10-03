@@ -167,7 +167,7 @@ BEGIN
             _row.database,
             _row.extension,
             _row.installed_version,
-            ( SELECT installed_version FROM dblink( '_update_extensions', 'SELECT installed_version FROM pg_available_extensions WHERE name = ' || quote_ident( _row.extension ), FALSE ) AS t ( installed_version text ) ),
+            ( SELECT installed_version FROM dblink( '_update_extensions', 'SELECT installed_version FROM pg_available_extensions WHERE name = ' || quote_literal( _row.extension ), FALSE ) AS t ( installed_version text ) ),
             _row.default_version
         );
 
