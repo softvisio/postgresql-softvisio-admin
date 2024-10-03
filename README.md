@@ -29,18 +29,8 @@ gmake USE_PGXS=1 install
 
 Example:
 
-```
-CALL create_database( 'test', 'ru_UA.UTF-8' );
-```
-
-### update_extensions()
-
-Updates currently installed extensions for all databases in the cluster.
-
-Example:
-
-```
-CALL update_extensions();
+```sql
+SELECT * FROM create_database( 'test', 'ru_UA.UTF-8' );
 ```
 
 ### outdated_extensions()
@@ -49,6 +39,16 @@ Returns list of outdated extensions for all databases in the cluster.
 
 Example:
 
-```
+```sql
 SELECT * FROM outdated_extensions();
+```
+
+### update_extensions()
+
+Updates currently installed extensions for all databases in the cluster.
+
+Example:
+
+```sql
+SELECT * FROM update_extensions();
 ```
