@@ -1,5 +1,11 @@
 # Changelog
 
+### 1.2.4 (2024-10-03)
+
+Fixes:
+
+-   fix: dblink disconnect
+
 ### 1.2.3 (2024-10-02)
 
 Fixes:
