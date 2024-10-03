@@ -30,7 +30,7 @@ gmake USE_PGXS=1 install
 Example:
 
 ```sql
-SELECT * FROM create_database( 'test', 'ru_UA.UTF-8' );
+CALL create_database( 'test', 'ru_UA.UTF-8' );
 ```
 
 ### outdated_extensions()

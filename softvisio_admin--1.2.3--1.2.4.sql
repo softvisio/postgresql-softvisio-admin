@@ -18,6 +18,7 @@ BEGIN
 
     -- if user is not exists
     IF NOT EXISTS ( SELECT FROM pg_roles WHERE rolname = _name ) THEN
+
         -- generate password
         _password := ( SELECT translate( encode( gen_random_bytes( 16 ), 'base64' ), '+/=', '-_' ) AS password );
 
@@ -65,7 +66,7 @@ EXCEPTION WHEN OTHERS THEN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION outdated_extensions() RETURNS TABLE (
+CREATE OR REPLACE FUNCTION outdated_extensions () RETURNS TABLE (
     database text,
     extension text,
     installed_version text,
@@ -122,9 +123,9 @@ EXCEPTION WHEN OTHERS THEN
 END;
 $$ LANGUAGE plpgsql;
 
-DROP PROCEDURE update_extensions();
+DROP PROCEDURE update_extensions;
 
-CREATE OR REPLACE FUNCTION update_extensions() RETURNS TABLE (
+CREATE OR REPLACE FUNCTION update_extensions () RETURNS TABLE (
     database text,
     extension text,
     old_version text,
