@@ -17,5 +17,8 @@
         "url": "git+https://github.com/softvisio/postgresql-softvisio-admin.git"
     },
     "license": "Proprietary Software",
-    "author": "root <root@softvisio.net>"
+    "author": "root <root@softvisio.net>",
+    "scripts": {
+        "publish": "softvisio-cli package publish"
+    }
 }
