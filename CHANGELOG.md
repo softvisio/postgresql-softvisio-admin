@@ -1,5 +1,13 @@
 # Changelog
 
+### 1.2.9 (2024-10-24)
+
+Fixes:
+
+-   fix: fix postgis extension update
+
+[Compare with the previous release: v1.2.8 ... v1.2.9](https://github.com/softvisio/postgresql-softvisio-admin/compare/v1.2.8...v1.2.9)
+
 ### 1.2.8 (2024-10-20)
 
 No notable changes since the previous release.
