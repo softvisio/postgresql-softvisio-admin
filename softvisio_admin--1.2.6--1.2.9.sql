@@ -151,7 +151,7 @@ BEGIN
 
         -- postgis
         IF _row.extension = 'postgis' THEN
-            IF ( SELECT * FROM dblink( '_update_extensions', 'SELECT postgis_extensions_upgrade()', FALSE ) AS t ( result text ) ) THEN END IF;
+            IF ( ( SELECT * FROM dblink( '_update_extensions', 'SELECT postgis_extensions_upgrade()', FALSE ) AS t ( result text ) ) = '' ) THEN END IF;
 
         -- other extension
         ELSE
