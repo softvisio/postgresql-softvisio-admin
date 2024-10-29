@@ -1,5 +1,13 @@
 # Changelog
 
+### 1.2.10 (2024-10-29)
+
+Other changes:
+
+-   chore: update docs
+
+[Compare with the previous release: v1.2.9 ... v1.2.10](https://github.com/softvisio/postgresql-softvisio-admin/compare/v1.2.9...v1.2.10)
+
 ### 1.2.9 (2024-10-24)
 
 Fixes:
