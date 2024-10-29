@@ -21,10 +21,13 @@ gmake USE_PGXS=1 install
 ### create_database( database_name, collate? )
 
 -   `database_name` {text} Name of the database to create.
+
 -   `collate?` {text} Database collate. Default: `"C.UTF-8"`.
 
 -   Creates user with the random password, if not exists.
+
 -   Creates database.
+
 -   Grant priviledges.
 
 Example:
