@@ -1,6 +1,6 @@
 {
     "name": "postgresql-softvisio-admin",
-    "version": "1.2.14",
+    "version": "1.2.15",
     "private": true,
     "description": "PostgreSQL admin extension",
     "keywords": [
