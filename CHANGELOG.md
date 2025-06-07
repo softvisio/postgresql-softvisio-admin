@@ -1,5 +1,13 @@
 # Changelog
 
+### v1.2.16 (2025-06-07)
+
+**Other changes:**
+
+- \[PATCH] chore: update cli config (👬 zdm)
+
+Compare with the previous release: [v1.2.15](https://github.com/softvisio/postgresql-softvisio-admin/compare/v1.2.15...v1.2.16)
+
 ### 1.2.15 (2025-02-27)
 
 Other changes:
