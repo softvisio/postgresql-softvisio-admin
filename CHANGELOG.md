@@ -1,5 +1,13 @@
 # Changelog
 
+### v1.2.18 (2025-07-23)
+
+**Bug fixes:**
+
+- \[PATCH] fix: update editorconfig (● [43fed79](https://github.com/softvisio/postgresql-softvisio-admin/commit/43fed79); 👬 zdm)
+
+Compare with the previous release: [v1.2.17](https://github.com/softvisio/postgresql-softvisio-admin/compare/v1.2.17...v1.2.18)
+
 ### v1.2.17 (2025-07-22)
 
 **Bug fixes:**
