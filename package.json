@@ -1,5 +1,5 @@
 {
-    "name": "postgresql-softvisio-admin",
+    "name": "@softvisio/postgresql-softvisio-admin",
     "version": "1.2.18",
     "private": true,
     "description": "PostgreSQL admin extension",
