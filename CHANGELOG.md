@@ -1,5 +1,13 @@
 # Changelog
 
+### v1.2.19 (2026-01-05)
+
+**Other changes:**
+
+- chore: fix package name (● [90d30d7](https://github.com/softvisio/postgresql-softvisio-admin/commit/90d30d7); 👬 zdm)
+
+Compare with the previous release: [v1.2.18](https://github.com/softvisio/postgresql-softvisio-admin/compare/v1.2.18...v1.2.19)
+
 ### v1.2.18 (2025-07-23)
 
 **Bug fixes:**
