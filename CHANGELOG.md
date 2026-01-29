@@ -1,5 +1,11 @@
 # Changelog
 
+### v1.2.20 (2026-01-29)
+
+No changes since the previous release.
+
+Compare with the previous release: [v1.2.19](https://github.com/softvisio/postgresql-softvisio-admin/compare/v1.2.19...v1.2.20)
+
 ### v1.2.19 (2026-01-05)
 
 **Other changes:**
