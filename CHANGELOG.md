@@ -1,5 +1,13 @@
 # Changelog
 
+### v1.2.21 (2026-04-20)
+
+**Code refactoring:**
+
+- \[PATCH] refactor: update .editorconfig (● [d1095b5](https://github.com/softvisio/postgresql-softvisio-admin/commit/d1095b5); 👬 zdm)
+
+Compare with the previous release: [v1.2.20...v1.2.21](https://github.com/softvisio/postgresql-softvisio-admin/compare/v1.2.20...v1.2.21)
+
 ### v1.2.20 (2026-01-29)
 
 No changes since the previous release.
