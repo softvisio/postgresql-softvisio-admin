@@ -1,5 +1,13 @@
 # Changelog
 
+### v1.2.23 (2026-05-18)
+
+**Other changes:**
+
+- chore(metadata): update package metadata (● [35eabef](https://github.com/softvisio/postgresql-softvisio-admin/commit/35eabef); 👬 zdm)
+
+Compare with the previous release: [v1.2.22...v1.2.23](https://github.com/softvisio/postgresql-softvisio-admin/compare/v1.2.22...v1.2.23)
+
 ### v1.2.22 (2026-05-07)
 
 **Code refactoring:**
