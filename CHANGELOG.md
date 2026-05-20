@@ -1,5 +1,13 @@
 # Changelog
 
+### v1.2.24 (2026-05-20)
+
+**Other changes:**
+
+- docs: update (● [698b4c1](https://github.com/softvisio/postgresql-softvisio-admin/commit/698b4c1); 👬 zdm)
+
+Compare with the previous release: [v1.2.23...v1.2.24](https://github.com/softvisio/postgresql-softvisio-admin/compare/v1.2.23...v1.2.24)
+
 ### v1.2.23 (2026-05-18)
 
 **Other changes:**
