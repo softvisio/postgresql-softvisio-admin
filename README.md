@@ -2,7 +2,7 @@
 
 ## Install / update / drop
 
-```
+```sql
 CREATE EXTENSION IF NOT EXISTS softvisio_admin CASCADE;
 
 ALTER EXTENSION softvisio_admin UPDATE;
@@ -12,7 +12,7 @@ DROP EXTENSION IF EXISTS softvisio_admin;
 
 ## Build
 
-```
+```sh
 gmake USE_PGXS=1 install
 ```
 
