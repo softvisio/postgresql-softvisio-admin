@@ -1,5 +1,13 @@
 # Changelog
 
+### v1.2.25 (2026-07-02)
+
+**Bug fixes:**
+
+- \[PATCH] fix: fix md \_ escape (● [d8f3f04](https://github.com/softvisio/postgresql-softvisio-admin/commit/d8f3f04); 👬 zdm)
+
+Compare with the previous release: [v1.2.24...v1.2.25](https://github.com/softvisio/postgresql-softvisio-admin/compare/v1.2.24...v1.2.25)
+
 ### v1.2.24 (2026-05-20)
 
 **Other changes:**
