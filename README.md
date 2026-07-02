@@ -18,7 +18,7 @@ gmake USE_PGXS=1 install
 
 ## Procedures
 
-### create_database( database_name, collate? )
+### create\_database( database\_name, collate? )
 
 - `database_name` {text} Name of the database to create.
 
@@ -36,7 +36,7 @@ Example:
 CALL create_database( 'test', 'ru_UA.UTF-8' );
 ```
 
-### outdated_extensions()
+### outdated\_extensions()
 
 Returns list of outdated extensions for all databases in the cluster.
 
@@ -46,7 +46,7 @@ Example:
 SELECT * FROM outdated_extensions();
 ```
 
-### update_extensions()
+### update\_extensions()
 
 Updates currently installed extensions for all databases in the cluster.
 

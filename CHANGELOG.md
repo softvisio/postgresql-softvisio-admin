@@ -176,7 +176,7 @@ No notable changes since the previous release.
 
 Features:
 
-- feat: outdated_extensions() function
+- feat: outdated\_extensions() function
 
 ### 1.1.7 (2024-09-07)
 
