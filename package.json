@@ -4,7 +4,6 @@
     "private": true,
     "description": "PostgreSQL admin extension",
     "keywords": [
-        "softvisio",
         "postgresql"
     ],
     "homepage": "https://github.com/softvisio/postgresql-softvisio-admin?tab=readme-ov-file#readme",
