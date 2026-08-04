@@ -1,5 +1,13 @@
 # Changelog
 
+### v1.2.27 (2026-08-04)
+
+**Other changes:**
+
+- chore: rename ccli to zcli (● [4bae795](https://github.com/softvisio/postgresql-softvisio-admin/commit/4bae795); 👬 zdm)
+
+Compare with the previous release: [v1.2.26...v1.2.27](https://github.com/softvisio/postgresql-softvisio-admin/compare/v1.2.26...v1.2.27)
+
 ### v1.2.26 (2026-08-01)
 
 **Other changes:**
