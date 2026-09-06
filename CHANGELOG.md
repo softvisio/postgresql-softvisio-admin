@@ -1,5 +1,13 @@
 # Changelog
 
+### v1.5.3 (2026-09-06)
+
+**Bug fixes:**
+
+- \[PATCH] fix: fix param name (● [2c15330](https://github.com/softvisio/postgresql-softvisio-admin/commit/2c15330); 👬 zdm)
+
+Compare with the previous release: [v1.5.2...v1.5.3](https://github.com/softvisio/postgresql-softvisio-admin/compare/v1.5.2...v1.5.3)
+
 ### v1.5.2 (2026-09-06)
 
 **Other changes:**
