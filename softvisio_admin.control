@@ -1,6 +1,6 @@
 # https://www.postgresql.org/docs/current/extend-extensions.html#EXTEND-EXTENSIONS-FILES
 
-default_version = '1.3.1'
+default_version = '1.4.0'
 comment = 'Admin extension'
 requires = 'pgcrypto, dblink'
 superuser = true

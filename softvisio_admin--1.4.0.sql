@@ -3,8 +3,6 @@
 \echo 'ALTER EXTENSION softvisio_admin UPDATE;'
 \echo \quit
 
-DROP PROCEDURE create_database ( _name text, _collate text DEFAULT 'C.UTF-8' );
-
 CREATE OR REPLACE PROCEDURE create_database ( p_name text, p_collate text DEFAULT 'C.UTF-8' ) AS $$
 DECLARE
     v_password text;
@@ -75,7 +73,7 @@ CREATE OR REPLACE FUNCTION outdated_extensions () RETURNS TABLE (
     default_version text
 ) AS $$
 DECLARE
-    _database text;
+    v_database text;
 BEGIN
     CREATE TEMP TABLE _outdated_extensions_tmp (
         database text,
@@ -84,15 +82,15 @@ BEGIN
         default_version text
     ) ON COMMIT DROP;
 
-    FOR _database IN
+    FOR v_database IN
         SELECT datname FROM pg_database WHERE datistemplate = FALSE
     LOOP
-        PERFORM dblink_connect( '_outdated_extensions', 'dbname=' || _database );
+        PERFORM dblink_connect( '_outdated_extensions', 'dbname=' || v_database );
 
         INSERT INTO
             _outdated_extensions_tmp
         SELECT
-            _database,
+            v_database,
             *
         FROM dblink( '_outdated_extensions', '
             SELECT
