@@ -3,7 +3,7 @@
 \echo 'ALTER EXTENSION softvisio_admin UPDATE;'
 \echo \quit
 
-DROP PROCEDURE create_database ( _name text, _collate text DEFAULT 'C.UTF-8' );
+DROP PROCEDURE create_database ( text, text );
 
 CREATE OR REPLACE PROCEDURE create_database ( p_name text, p_collate text DEFAULT 'C.UTF-8' ) AS $$
 DECLARE
