@@ -1,5 +1,13 @@
 # Changelog
 
+### v1.5.0 (2026-09-06)
+
+**New features:**
+
+- \[MINOR] feat: rename function args (● [4a812d2](https://github.com/softvisio/postgresql-softvisio-admin/commit/4a812d2); 👬 zdm)
+
+Compare with the previous release: [v1.4.2...v1.5.0](https://github.com/softvisio/postgresql-softvisio-admin/compare/v1.4.2...v1.5.0)
+
 ### v1.4.2 (2026-09-06)
 
 **Bug fixes:**
