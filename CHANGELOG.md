@@ -1,5 +1,13 @@
 # Changelog
 
+### v1.4.2 (2026-09-06)
+
+**Bug fixes:**
+
+- \[PATCH] fix: fix drop procedure (● [aadf81c](https://github.com/softvisio/postgresql-softvisio-admin/commit/aadf81c); 👬 zdm)
+
+Compare with the previous release: [v1.4.1...v1.4.2](https://github.com/softvisio/postgresql-softvisio-admin/compare/v1.4.1...v1.4.2)
+
 ### v1.4.1 (2026-09-06)
 
 **Bug fixes:**
