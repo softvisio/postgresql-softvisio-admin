@@ -18,11 +18,11 @@ gmake USE_PGXS=1 install
 
 ## Procedures
 
-### create\_database( database\_name, collate? )
+### `create_database ( name, collation? )`
 
-- `database_name` {text} Name of the database to create.
+- `name` {text} Name of the database to create.
 
-- `collate?` {text} Database collate. Default: `"C.UTF-8"`.
+- `collation?` {text} Database collation. Default: `"C.UTF-8"`.
 
 - Creates user with the random password, if not exists.
 
@@ -36,7 +36,9 @@ Example:
 CALL create_database( 'test', 'ru_UA.UTF-8' );
 ```
 
-### outdated\_extensions()
+## Functions
+
+### `outdated_extensions ()`
 
 Returns list of outdated extensions for all databases in the cluster.
 
@@ -46,7 +48,7 @@ Example:
 SELECT * FROM outdated_extensions();
 ```
 
-### update\_extensions()
+### `update_extensions ()`
 
 Updates currently installed extensions for all databases in the cluster.
 
