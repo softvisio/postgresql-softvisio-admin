@@ -1,5 +1,13 @@
 # Changelog
 
+### v1.4.1 (2026-09-06)
+
+**Bug fixes:**
+
+- \[PATCH] fix: add missed upgrade paths (● [7d02424](https://github.com/softvisio/postgresql-softvisio-admin/commit/7d02424); 👬 zdm)
+
+Compare with the previous release: [v1.4.0...v1.4.1](https://github.com/softvisio/postgresql-softvisio-admin/compare/v1.4.0...v1.4.1)
+
 ### v1.4.0 (2026-09-06)
 
 **New features:**
