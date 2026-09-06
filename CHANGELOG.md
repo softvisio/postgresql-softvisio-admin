@@ -1,5 +1,13 @@
 # Changelog
 
+### v1.5.1 (2026-09-06)
+
+**Bug fixes:**
+
+- \[PATCH] fix: fix param name (● [cadff15](https://github.com/softvisio/postgresql-softvisio-admin/commit/cadff15); 👬 zdm)
+
+Compare with the previous release: [v1.5.0...v1.5.1](https://github.com/softvisio/postgresql-softvisio-admin/compare/v1.5.0...v1.5.1)
+
 ### v1.5.0 (2026-09-06)
 
 **New features:**
