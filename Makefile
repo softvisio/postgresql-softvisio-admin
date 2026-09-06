@@ -17,7 +17,8 @@ DATA =	\
 	softvisio_admin--1.4.2--1.5.0.sql \
 	softvisio_admin--1.5.0.sql \
 	softvisio_admin--1.5.0--1.5.1.sql \
-	softvisio_admin--1.5.1--1.5.2.sql
+	softvisio_admin--1.5.1--1.5.2.sql \
+	softvisio_admin--1.5.2--1.5.3.sql
 
 PG_CONFIG = pg_config
 PGXS := $(shell $(PG_CONFIG) --pgxs)

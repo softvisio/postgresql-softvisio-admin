@@ -5,7 +5,7 @@
 
 DROP PROCEDURE create_database ( text, text );
 
-CREATE OR REPLACE PROCEDURE create_database ( name text, collate text DEFAULT 'C.UTF-8' ) AS $$
+CREATE OR REPLACE PROCEDURE create_database ( name text, collation text DEFAULT 'C.UTF-8' ) AS $$
 DECLARE
     v_password text;
 BEGIN
@@ -31,7 +31,7 @@ BEGIN
     END IF;
 
     -- create database
-    PERFORM dblink_exec( '_create_database_current', 'CREATE DATABASE ' || quote_ident( create_database.name ) || ' ENCODING ''UTF8'' LC_COLLATE ' || quote_literal( create_database.collate ) || ' LC_CTYPE ' || quote_literal( create_database.collate ) || ' TEMPLATE template0', FALSE );
+    PERFORM dblink_exec( '_create_database_current', 'CREATE DATABASE ' || quote_ident( create_database.name ) || ' ENCODING ''UTF8'' LC_COLLATE ' || quote_literal( create_database.collation ) || ' LC_CTYPE ' || quote_literal( create_database.collation ) || ' TEMPLATE template0', FALSE );
 
     -- change database owner
     PERFORM dblink_exec( '_create_database_current', 'ALTER DATABASE ' || quote_ident( create_database.name ) || ' OWNER TO ' || quote_ident( create_database.name ), FALSE );
