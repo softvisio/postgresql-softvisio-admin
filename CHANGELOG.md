@@ -1,5 +1,13 @@
 # Changelog
 
+### v1.3.1 (2026-09-06)
+
+**Code refactoring:**
+
+- \[PATCH] refactor: use var prefixes in sql functions (● [2ff9323](https://github.com/softvisio/postgresql-softvisio-admin/commit/2ff9323); 👬 zdm)
+
+Compare with the previous release: [v1.3.0...v1.3.1](https://github.com/softvisio/postgresql-softvisio-admin/compare/v1.3.0...v1.3.1)
+
 ### v1.3.0 (2026-09-06)
 
 **New features:**
