@@ -1,5 +1,13 @@
 # Changelog
 
+### v1.3.0 (2026-09-06)
+
+**New features:**
+
+- \[MINOR] feat: use prefixes for variables name in functions (● [611c0ee](https://github.com/softvisio/postgresql-softvisio-admin/commit/611c0ee), [9822dfa](https://github.com/softvisio/postgresql-softvisio-admin/commit/9822dfa); 👬 zdm)
+
+Compare with the previous release: [v1.2.27...v1.3.0](https://github.com/softvisio/postgresql-softvisio-admin/compare/v1.2.27...v1.3.0)
+
 ### v1.2.27 (2026-08-04)
 
 **Other changes:**
