@@ -3,7 +3,7 @@
 \echo 'ALTER EXTENSION softvisio_admin UPDATE;'
 \echo \quit
 
-CREATE OR REPLACE PROCEDURE create_database ( name text, collation text DEFAULT 'C.UTF-8' ) AS $$
+CREATE OR REPLACE PROCEDURE create_database ( name text ) AS $$
 DECLARE
     v_password text;
 BEGIN
@@ -23,29 +23,29 @@ BEGIN
         RAISE NOTICE 'Password: %', v_password;
 
         -- create user
-        PERFORM dblink_exec( '_create_database_current', 'CREATE USER ' || quote_ident( create_database.name ) || ' WITH ENCRYPTED PASSWORD ' || quote_literal( v_password ), FALSE );
+        PERFORM dblink_exec( '_create_database_current', 'CREATE USER ' || quote_ident( create_database.name ) || ' WITH ENCRYPTED PASSWORD ' || quote_literal( v_password ) );
     ELSE
         RAISE NOTICE 'User already exists, you can set password manually';
     END IF;
 
     -- create database
-    PERFORM dblink_exec( '_create_database_current', 'CREATE DATABASE ' || quote_ident( create_database.name ) || ' ENCODING ''UTF8'' LC_COLLATE ' || quote_literal( create_database.collation ) || ' LC_CTYPE ' || quote_literal( create_database.collation ) || ' TEMPLATE template0', FALSE );
+    PERFORM dblink_exec( '_create_database_current', 'CREATE DATABASE ' || quote_ident( create_database.name ) || ' TEMPLATE template0 ENCODING ''UTF8'' LOCALE_PROVIDER icu ICU_LOCALE ''und'' LC_COLLATE ''C.UTF-8'' LC_CTYPE ''C.UTF-8''' );
 
     -- change database owner
-    PERFORM dblink_exec( '_create_database_current', 'ALTER DATABASE ' || quote_ident( create_database.name ) || ' OWNER TO ' || quote_ident( create_database.name ), FALSE );
+    PERFORM dblink_exec( '_create_database_current', 'ALTER DATABASE ' || quote_ident( create_database.name ) || ' OWNER TO ' || quote_ident( create_database.name ) );
 
     -- grant user permissions to create schemas
-    PERFORM dblink_exec( '_create_database_current', 'GRANT ALL PRIVILEGES ON DATABASE ' || quote_ident( create_database.name ) || ' TO ' || quote_ident( create_database.name ), FALSE );
+    PERFORM dblink_exec( '_create_database_current', 'GRANT ALL PRIVILEGES ON DATABASE ' || quote_ident( create_database.name ) || ' TO ' || quote_ident( create_database.name ) );
 
     PERFORM dblink_connect( '_create_database', 'dbname=' || create_database.name );
 
     -- create schema
-    PERFORM dblink_exec( '_create_database', 'CREATE SCHEMA AUTHORIZATION ' || quote_ident( create_database.name ), FALSE );
+    PERFORM dblink_exec( '_create_database', 'CREATE SCHEMA AUTHORIZATION ' || quote_ident( create_database.name ) );
 
     -- create extensions in "public" schema
-    -- PERFORM dblink_exec( '_create_database', 'CREATE EXTENSION pgcrypto CASCADE', FALSE );
-    -- PERFORM dblink_exec( '_create_database', 'CREATE EXTENSION timescaledb CASCADE', FALSE );
-    -- PERFORM dblink_exec( '_create_database', 'CREATE EXTENSION pg_hashids CASCADE', FALSE );
+    -- PERFORM dblink_exec( '_create_database', 'CREATE EXTENSION pgcrypto CASCADE' );
+    -- PERFORM dblink_exec( '_create_database', 'CREATE EXTENSION timescaledb CASCADE' );
+    -- PERFORM dblink_exec( '_create_database', 'CREATE EXTENSION pg_hashids CASCADE' );
 
     PERFORM dblink_disconnect( '_create_database' );
     PERFORM dblink_disconnect( '_create_database_current' );
@@ -72,23 +72,17 @@ CREATE OR REPLACE FUNCTION outdated_extensions () RETURNS TABLE (
 DECLARE
     v_database text;
 BEGIN
-    CREATE TEMP TABLE _outdated_extensions_tmp (
-        database text,
-        extension text,
-        installed_version text,
-        default_version text
-    ) ON COMMIT DROP;
-
     FOR v_database IN
-        SELECT datname FROM pg_database WHERE datistemplate = FALSE
+        SELECT datname FROM pg_database WHERE datistemplate = FALSE AND datallowconn = TRUE
     LOOP
         PERFORM dblink_connect( '_outdated_extensions', 'dbname=' || v_database );
 
-        INSERT INTO
-            _outdated_extensions_tmp
+        RETURN QUERY
         SELECT
             v_database,
-            *
+            t.extension,
+            t.installed_version,
+            t.default_version
         FROM dblink( '_outdated_extensions', '
             SELECT
                 name,
@@ -107,8 +101,6 @@ BEGIN
 
         PERFORM dblink_disconnect( '_outdated_extensions' );
     END LOOP;
-
-    RETURN QUERY SELECT * FROM _outdated_extensions_tmp;
 
 EXCEPTION WHEN OTHERS THEN
     IF '_outdated_extensions' = ANY ( dblink_get_connections() ) THEN
@@ -129,47 +121,33 @@ CREATE OR REPLACE FUNCTION update_extensions () RETURNS TABLE (
 DECLARE
     v_row record;
 BEGIN
-    CREATE TEMP TABLE _update_extensions_tmp (
-        database text,
-        extension text,
-        old_version text,
-        installed_version text,
-        default_version text
-    ) ON COMMIT DROP;
-
     FOR v_row IN
         SELECT * FROM outdated_extensions()
     LOOP
         PERFORM dblink_connect( '_update_extensions', 'dbname=' || v_row.database );
 
         -- test query, required to avoid exceptions when some extension can't be loaded
-        IF ( SELECT * FROM dblink( '_update_extensions', 'SELECT 1', FALSE ) AS t ( test int2 ) ) THEN END IF;
+        PERFORM * FROM dblink( '_update_extensions', 'SELECT 1', FALSE ) AS t ( test int2 );
 
         -- postgis
         IF v_row.extension = 'postgis' THEN
-            IF ( ( SELECT * FROM dblink( '_update_extensions', 'SELECT postgis_extensions_upgrade()', FALSE ) AS t ( result text ) ) = '' ) THEN END IF;
+            PERFORM * FROM dblink( '_update_extensions', 'SELECT postgis_extensions_upgrade()', FALSE ) AS t ( result text );
 
         -- other extension
         ELSE
             PERFORM dblink_exec( '_update_extensions', 'ALTER EXTENSION ' || quote_ident( v_row.extension ) || ' UPDATE', FALSE );
         END IF;
 
-        INSERT INTO
-            _update_extensions_tmp
-        ( database, extension, old_version, installed_version, default_version )
-        VALUES
-        (
+        RETURN QUERY
+        SELECT
             v_row.database,
             v_row.extension,
             v_row.installed_version,
             ( SELECT t.installed_version FROM dblink( '_update_extensions', 'SELECT installed_version FROM pg_available_extensions WHERE name = ' || quote_literal( v_row.extension ), FALSE ) AS t ( installed_version text ) ),
-            v_row.default_version
-        );
+            v_row.default_version;
 
         PERFORM dblink_disconnect( '_update_extensions' );
     END LOOP;
-
-    RETURN QUERY SELECT * FROM _update_extensions_tmp;
 
 EXCEPTION WHEN OTHERS THEN
     IF '_update_extensions' = ANY ( dblink_get_connections() ) THEN
