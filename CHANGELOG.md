@@ -1,5 +1,17 @@
 # Changelog
 
+### v1.6.0 (2026-11-12)
+
+**New features:**
+
+- \[MINOR] feat: add database creation and extension update utilities (● [f0fc882](https://github.com/softvisio/postgresql-softvisio-admin/commit/f0fc882); 👬 zdm)
+
+    Add the 1.5.4-to-1.6.0 migration and set 1.6.0 as the default extension version. Use ICU locale defaults for created databases and streamline extension upgrade queries.
+
+- \[MINOR] feat: update create database locale (● [7735ad9](https://github.com/softvisio/postgresql-softvisio-admin/commit/7735ad9), [c9990d8](https://github.com/softvisio/postgresql-softvisio-admin/commit/c9990d8); 👬 zdm)
+
+Compare with the previous release: [v1.5.4...v1.6.0](https://github.com/softvisio/postgresql-softvisio-admin/compare/v1.5.4...v1.6.0)
+
 ### v1.5.4 (2026-10-03)
 
 **Other changes:**
