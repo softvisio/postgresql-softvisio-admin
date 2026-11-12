@@ -1,5 +1,13 @@
 # Changelog
 
+### v1.7.0 (2026-11-12)
+
+**New features:**
+
+- \[MINOR] feat: delete old versions (● [ef47484](https://github.com/softvisio/postgresql-softvisio-admin/commit/ef47484); 👬 zdm)
+
+Compare with the previous release: [v1.6.0...v1.7.0](https://github.com/softvisio/postgresql-softvisio-admin/compare/v1.6.0...v1.7.0)
+
 ### v1.6.0 (2026-11-12)
 
 **New features:**
