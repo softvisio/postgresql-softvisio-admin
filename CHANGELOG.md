@@ -1,5 +1,13 @@
 # Changelog
 
+### v1.8.0 (2026-11-13)
+
+**New features:**
+
+- \[MINOR] feat: add database and extension management functions (● [4effa69](https://github.com/softvisio/postgresql-softvisio-admin/commit/4effa69); 👬 zdm)
+
+Compare with the previous release: [v1.7.0...v1.8.0](https://github.com/softvisio/postgresql-softvisio-admin/compare/v1.7.0...v1.8.0)
+
 ### v1.7.0 (2026-11-12)
 
 **New features:**
