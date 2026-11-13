@@ -1,7 +1,7 @@
 # https://www.postgresql.org/docs/current/extend-extensions.html#EXTEND-EXTENSIONS-FILES
 
-default_version = '1.7.0'
-comment = 'Admin extension'
+default_version = '1.7.1'
+comment = 'administration functions'
 requires = 'pgcrypto, dblink'
 superuser = true
 # trusted = false

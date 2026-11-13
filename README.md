@@ -1,4 +1,4 @@
-# PostgreSQL admin extension
+# PostgreSQL administration functions
 
 ## Install / update / drop
 

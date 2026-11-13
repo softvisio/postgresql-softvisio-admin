@@ -1,6 +1,8 @@
 EXTENSION = softvisio_admin
 DATA =	\
-	softvisio_admin--1.7.0.sql
+	softvisio_admin--1.7.0.sql \
+	softvisio_admin--1.7.0--1.7.1.sql \
+	softvisio_admin--1.7.1.sql
 
 PG_CONFIG = pg_config
 PGXS := $(shell $(PG_CONFIG) --pgxs)

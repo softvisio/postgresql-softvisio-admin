@@ -2,7 +2,7 @@
     "name": "@softvisio/postgresql-softvisio-admin",
     "version": "1.7.0",
     "private": true,
-    "description": "PostgreSQL admin extension",
+    "description": "PostgreSQL administration functions",
     "keywords": [
         "postgresql"
     ],
